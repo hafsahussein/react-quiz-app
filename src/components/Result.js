@@ -1,5 +1,17 @@
+import Home from "./Home";
+
 const Result = (props) => {
-	const {totalQuestions, attempts, totalCorrect, goToHome, tryAgain} = props;
+	const {values, goToHome, goToQuiz, refresh} = props;
+	const tryAgain =(e)=>{
+		e.preventDefault();
+		refresh();
+		goToQuiz()
+	}
+	const goHome = ()=>{
+		refresh();
+		goToHome()
+
+	}
     return ( 
         <div className="result box">
 	<h1>Quiz result</h1>
@@ -7,27 +19,27 @@ const Result = (props) => {
 		<tbody>
 	<tr>
 		<td>total questions</td>
-	<td className="total-questions">{totalQuestions}</td>
+	<td className="total-questions">{values.total}</td>
 	</tr>
 	<tr>
 			<td>attempted</td>
-	<td className="total-attempts">{attempts}</td>
+	<td className="total-attempts">{values.attempted}</td>
 	</tr>
 	<tr>
 			<td>correct</td>
-			<td className="total-correct">{totalCorrect}</td>
+			<td className="total-correct">{values.totalCorrect}</td>
 	</tr>
 	<tr>
 			<td>Wrong</td>
-	<td className="total-wrong">{attempts-totalCorrect}</td>
+	<td className="total-wrong">{values.attempted-values.totalCorrect}</td>
 	</tr>
 	<tr>
 		<td>percentage</td>
-	<td className="percentage">{(totalCorrect/totalQuestions)*100}% </td>
+	<td className="percentage">{(values.totalCorrect/values.total)*100}% </td>
 	</tr>
 	<tr>
 		<td>your total score</td>
-	<td className="total-score">{totalCorrect} / {totalQuestions}</td>
+	<td className="total-score">{values.totalCorrect} / {values.total}</td>
 	</tr>
 	</tbody>
 	</table>
@@ -36,7 +48,7 @@ const Result = (props) => {
 	>try again</button> {" "}
 	<button  className="btn"
 	onClick={()=>
-		goToHome()}
+		goHome()}
 	>go to home</button>
 </div>
      );
