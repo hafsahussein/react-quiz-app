@@ -1,5 +1,3 @@
-import Home from "./Home";
-
 const Result = (props) => {
 	const {values, goToHome, goToQuiz, refresh} = props;
 	const tryAgain =(e)=>{
